@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	handler "mosaic_web/handler"
 	mosaic "mosaic_web/mosaic"
 	"net/http"
 	"runtime"
@@ -29,11 +30,11 @@ func main() {
 
 	mux.HandleFunc("/", uploadHandlerFunc)
 	mux.HandleFunc("/fetch", fetchHandlerFunc)
-	mux.HandleFunc("/reload", mosaic.ReloadTilesDBHandlerFunc)
-	mux.HandleFunc("/fetch_tiles", mosaic.FetchTilesHandlerFunc)
-	mux.HandleFunc("/mosaic_no_concurrency", mosaic.NoConcurrencyHandlerFunc)
-	mux.HandleFunc("/mosaic_fanout_channel", mosaic.FanOutWithChannelHandlerFunc)
-	mux.HandleFunc("/mosaic_fanout_fanin", mosaic.FanOutFanInHandlerFunc)
+	mux.HandleFunc("/reload", handler.ReloadTilesDBHandlerFunc)
+	mux.HandleFunc("/fetch_tiles", handler.FetchTilesHandlerFunc)
+	mux.HandleFunc("/mosaic_no_concurrency", handler.NoConcurrencyHandlerFunc)
+	mux.HandleFunc("/mosaic_fanout_channel", handler.FanOutWithChannelHandlerFunc)
+	mux.HandleFunc("/mosaic_fanout_fanin", handler.FanOutFanInHandlerFunc)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:8080",

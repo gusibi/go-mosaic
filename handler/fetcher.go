@@ -1,9 +1,10 @@
-package mosaic
+package handler
 
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	mosaic "mosaic_web/mosaic"
 	"net/http"
 )
 
@@ -29,7 +30,7 @@ type PhotoInfo struct {
 
 func ReloadTilesDBHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	go func() {
-		TILESDB = TilesDB()
+		mosaic.TILESDB = mosaic.TilesDB()
 	}()
 	http.Redirect(w, r, "/", http.StatusFound)
 }
